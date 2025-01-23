@@ -85,7 +85,8 @@ async function handleRevalidate(payload: ISanityRevalidatePayload) {
       return true;
     }
     case 'generalPage':
-    case 'blog': {
+    case 'book':
+    case 'author': {
       if (payload.slug) {
         const path = getRelativeURL(payload._type, payload.slug);
 

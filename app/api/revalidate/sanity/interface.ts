@@ -23,6 +23,6 @@ interface ISanityRevalidatePayloadWithoutSlug {
  */
 interface ISanityRevalidatePayloadWithSlug {
   _id: string;
-  _type: 'generalPage' | 'blog';
+  _type: 'generalPage' | 'book' | 'author';
   slug?: string;
 }
