@@ -15,14 +15,14 @@ export function Header({ menuLinks }: IHeader) {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-black py-6 text-white shadow-sm backdrop-blur-sm">
+    <header className="sticky top-0 z-50 py-6 text-black shadow-sm backdrop-blur-sm">
       <div className="container">
         <div className="grid gap-1">
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
             <h1>
               <Link href={'/'} className="block">
                 <Image
-                  className="w-48 md:w-auto"
+                  className="w-8"
                   width={Logo.width}
                   height={Logo.height}
                   src={Logo.src}
@@ -32,7 +32,7 @@ export function Header({ menuLinks }: IHeader) {
                   blurDataURL={Logo.blurDataURL}
                 />
               </Link>
-              <span className="sr-only">Lemon Hive Next.js Starter</span>
+              <span className="sr-only">SmartBook</span>
             </h1>
             <CustomSheet
               sheetOpen={sheetOpen}
@@ -44,7 +44,7 @@ export function Header({ menuLinks }: IHeader) {
                   onClick={() => setSheetOpen(true)}
                   aria-label="Open Menu"
                 >
-                  <IconStore iconName="menu" className="text-white" />
+                  <IconStore iconName="menu" className="text-black" />
                 </button>
               }
               content={
@@ -53,14 +53,14 @@ export function Header({ menuLinks }: IHeader) {
                     {menuLinks.map((menuLink, index) => (
                       <li
                         key={index}
-                        className="w-full cursor-pointer py-3 text-center transition-all duration-300 hover:bg-gray-light"
+                        className="w-full cursor-pointer py-3 text-center transition-all duration-300 hover:bg-gray-dark"
                       >
                         <CustomLink {...menuLink}>{menuLink.label}</CustomLink>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="absolute bottom-0 w-full border-t border-gray-light bg-white p-4">
+                  <div className="absolute bottom-0 w-full border-t border-gray-dark bg-black p-4">
                     <CustomButton
                       type="action"
                       colorScheme="primary"
