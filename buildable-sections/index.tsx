@@ -23,7 +23,7 @@ export function SectionBuilder({ sections }: Props) {
                   <div className="flex min-h-screen items-center justify-center">
                     <div className="rounded-10  bg-col-6 text-col-1 mx-auto max-w-[1200px] px-6 py-10">
                       <h2 className="text-center text-2xl font-bold xl:text-4xl ">
-                        Section builder not implemented for: {section._type}
+                        Section builder not implemented
                       </h2>
                     </div>
                   </div>
