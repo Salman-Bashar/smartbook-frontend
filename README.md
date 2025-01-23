@@ -1,4 +1,6 @@
-# NextJS Starter
+# SmartBook Frontend
+
+This is the frontend repository for SmartBook.
 
 ## Resources:
 
