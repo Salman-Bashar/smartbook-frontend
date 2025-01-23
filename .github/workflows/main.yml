@@ -1,10 +1,9 @@
-name: LH NextJS Sanity Starter | Main
+name: SmartBook (Frontend) | Main
 
 on:
   push:
-    # Update to main branch
     branches:
-      - sanity-integration
+      - main
   workflow_dispatch:
 
 # Cancel in-progress actions when a new action is triggered
@@ -13,7 +12,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check-code-quality-and-deploy-storybook:
+  check-code-quality:
+    if: ${{ github.event.label.name == 'in review' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run tsc
+      - run: npm run lint
+      - run: npm run format:check
+  deploy-application:
+    needs: check-code-quality
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,4 +51,4 @@ jobs:
       - name: Invoke deployment hook
         uses: distributhor/workflow-webhook@v3
         with:
-          webhook_url: ${{ vars.SANITY_INTEGRATION_DEPLOY_HOOK }}
+          webhook_url: ${{ vars.VERCEL_DEPLOY_HOOK }}
