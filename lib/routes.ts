@@ -3,7 +3,11 @@ import { notFound } from 'next/navigation';
 export const SANITY_PAGE_ROUTES = {
   homePage: '/',
   generalPage: (slug: string) => `/${slug}`,
-  blog: (slug: string) => `/blogs/${slug}`,
+  authors: '/authors',
+  author: (slug: string) => `/authors/${slug}`,
+  books: '/books',
+  book: (slug: string) => `/books/${slug}`,
+  user: (slug: string) => `/users/${slug}`,
 };
 
 /**
@@ -18,9 +22,12 @@ export function getRelativeURL(
 ) {
   switch (route_type) {
     case 'homePage':
+    case 'authors':
+    case 'books':
       return SANITY_PAGE_ROUTES[route_type];
-    case 'blog':
     case 'generalPage':
+    case 'author':
+    case 'book':
       return SANITY_PAGE_ROUTES[route_type](slug);
     default:
       notFound();
