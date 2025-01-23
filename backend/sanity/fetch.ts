@@ -23,7 +23,7 @@ export async function sanityFetch<QueryResponse>({
   params = {},
   revalidate,
   tags,
-  useCdn = false,
+  useCdn = true,
   disablePreview = false,
 }: SanityFetchArgs) {
   let clientConfig: ClientConfig = {};
