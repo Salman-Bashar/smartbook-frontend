@@ -49,20 +49,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Blog Page
-  const SANITY_BLOG_PAGES_QUERY = groq`
-    *[_type == "blog"]{
+  // Book Page
+  const SANITY_BOOK_PAGES_QUERY = groq`
+    *[_type == "book"]{
         ${SANITY_LIMITED_SEO_DATA_QUERY_FRAGMENT}
     }
   `;
-  const blogPagesData = await sanityFetch<ISanityLimitedSeoData[]>({
-    query: SANITY_BLOG_PAGES_QUERY,
+  const bookPagesData = await sanityFetch<ISanityLimitedSeoData[]>({
+    query: SANITY_BOOK_PAGES_QUERY,
   });
 
-  if (blogPagesData && blogPagesData.length > 0) {
-    blogPagesData.forEach((page) => {
+  if (bookPagesData && bookPagesData.length > 0) {
+    bookPagesData.forEach((page) => {
       sitemaps.push({
-        url: baseUrl + getRelativeURL('blog', page.slug),
+        url: baseUrl + getRelativeURL('book', page.slug),
         lastModified: page._updatedAt,
       });
     });
